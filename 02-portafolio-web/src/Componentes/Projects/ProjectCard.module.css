@@ -1,0 +1,32 @@
+@import "../../vars.css";
+
+.container{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 30px;
+    max-width: 400px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgb(218, 89, 110) 0%, #a93488 100% );
+}
+
+.image{
+    width: 100%;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.description{
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
