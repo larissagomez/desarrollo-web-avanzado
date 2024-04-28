@@ -17,6 +17,10 @@ body {
 
 .image-container {
   flex-basis: 19%;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
 }
 
 img {
@@ -74,4 +78,10 @@ img {
 
 .search-button:focus {
   outline: none;
+}
+
+.description{
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: 100;
 }
