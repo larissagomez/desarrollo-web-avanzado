@@ -1,53 +1,46 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import  SearchForm  from "./components/SearchForm/SearchForm"
+import  CharacterList  from "./components/CharacterList/CharacterList"
+import  Pagination  from "./components/Pagination/Pagination"
 import './App.css'
 
 function App() {
-  const [data, setData] = useState({results: []})
-  const [query, setQuery] = useState('')
-  const [search, setSearch] = useState ('')
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    setSearch(query)
-  }
-
-  const searchCharacter = async () => {
-    const result = await axios (`https://rickandmortyapi.com/api/character/?name=${query}`)
-
-    setData(result.data)
-  }
+  const [data, setData] = useState({ results: [] });
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    searchCharacter()
-  }, [search],)
+    const searchCharacter = async () => {
+      try {
+        const result = await axios.get(`https://rickandmortyapi.com/api/character/?name=${query}&page=${page}`);
+        setData(result.data);
+      } catch (error) {
+        console.error('Error fetching character data:', error);
+      }
+    };
+
+    searchCharacter();
+  }, [query, page]);
+
+  const handleSearchSubmit = query => {
+    setQuery(query);
+    setPage(1);
+  };
+
+  const handlePageChange = newPage => {
+    setPage(newPage);
+  };
 
   return (
     <>
-      <h1>Rick and Morty</h1>
-
       <div className="results-wrapper">
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={query} onChange={e => setQuery(e.target.value)} />
-          <button type="search-button"> Buscar </button>
-        </form>
-        <div>
-          <ul className='grid-cards'>
-            {data.results.map(item => (
-              <li className='image-container' key={item.id}> 
-                <img src={item.image} alt={item.name}/>
-                <h2 className='name'>{item.name}</h2>
-                <span className='description'>Estatus: {item.status}</span>
-                <span className='description'>Especie: {item.species}</span>
-                <span className='description'>Genero: {item.gender}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <SearchForm onSubmit={handleSearchSubmit} />
+        <CharacterList data={data} />
+        <Pagination page={page} totalPages={data.info ? data.info.pages : 1} onPageChange={handlePageChange} />
       </div>
-      
     </>
-  )
+  );
 }
 
-export default App
+export default App;

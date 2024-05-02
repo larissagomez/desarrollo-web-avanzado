@@ -1,0 +1,39 @@
+ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+    gap: .5rem .9rem;
+    margin-top: 80px;
+    margin-right: 50px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  li {
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    padding: 10px;
+    background-color: rgb(246, 251, 255);
+  }
+  
+  img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: auto;
+  }
+  
+  .nombre {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .info {
+    justify-content: center;
+    margin-bottom: 8px;
+    display:flex;
+    font-size: 16px;
+  }
+  
