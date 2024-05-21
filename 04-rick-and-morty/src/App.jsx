@@ -6,8 +6,11 @@ import  Pagination  from "./components/Pagination/Pagination"
 import './App.css'
 
 function App() {
+// Estado para almacenar los datos de los personajes
   const [data, setData] = useState({ results: [] });
+// Estado para almacenar el término de búsqueda
   const [query, setQuery] = useState('');
+// Estado para almacenar el número de página actual
   const [page, setPage] = useState(1);
 
   useEffect(() => {
